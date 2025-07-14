@@ -44,7 +44,7 @@ module "records" {
   records = [
     {
   
-      name    = "*.app-dev"
+      name    = "*.vvr-app-dev"
       type    = "A"
       alias = {
       name                   = module.alb.dns_name
