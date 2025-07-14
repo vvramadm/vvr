@@ -38,7 +38,7 @@ resource "aws_lb_target_group" "vvr-backend" {
 }
 resource "aws_lb_target_group_attachment" "backend" {
   target_group_arn = aws_lb_target_group.vvr-backend.arn
-  target_id        = var.instances
+  target_id        = [module.vvr-backend.id]
   port             = 80
 }
 
