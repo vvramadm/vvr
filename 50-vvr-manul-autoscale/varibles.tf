@@ -41,6 +41,7 @@ variable "instance_count" {
 
 variable "name_prefix" {
   type = string
+  default = "vvr"
 }
 
 # variable "ec2_instance_ids" {
