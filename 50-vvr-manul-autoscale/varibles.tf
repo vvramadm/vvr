@@ -35,9 +35,10 @@ variable "domain_name" {
   default = "ramops.online"
 }
 
-variable "instance_count" {
-  type = number
-}
+# variable "instance_count" {
+#   type = number
+  
+# }
 
 variable "name_prefix" {
   type = string
