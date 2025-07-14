@@ -2,7 +2,7 @@
 module "vvr-backend" {
  
   source  = "terraform-aws-modules/ec2-instance/aws"
-  count = 6
+  #count = 6
   for_each = var.instances
   ami                    = data.aws_ami.devops.id # golden AMI
   name = each.key #vvr-dev-backend
