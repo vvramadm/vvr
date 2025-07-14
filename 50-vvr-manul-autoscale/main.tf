@@ -2,6 +2,7 @@
 module "vvr-backend" {
  
   source  = "terraform-aws-modules/ec2-instance/aws"
+  count = 6
   for_each = var.instances
   ami                    = data.aws_ami.devops.id # golden AMI
   name = each.key #vvr-dev-backend
@@ -67,7 +68,7 @@ resource "aws_lambda_function" "ec2_scaler" {
 
   environment {
     variables = {
-      INSTANCE_IDS = module.backend-vvr.ec2_instance_ids
+      INSTANCE_IDS = module.backend-vvr.id
       TARGET_GROUP_ARN = aws_lb_target_group.vvr-backend
     }
   }
