@@ -18,29 +18,29 @@ module "vvr-backend" {
   )
 }
 
-# resource "aws_lb_target_group" "vvr-backend" {
-#   name     = "${local.resource_name}-backend-tg"
-#   port     = 8080
-#   protocol = "HTTP"
-#   vpc_id   = local.vpc_id
-#   deregistration_delay = 60
+resource "aws_lb_target_group" "vvr-backend" {
+  name     = "${local.resource_name}-backend-tg"
+  port     = 8080
+  protocol = "HTTP"
+  vpc_id   = local.vpc_id
+  deregistration_delay = 60
 
-#   health_check {
-#     healthy_threshold = 2
-#     unhealthy_threshold = 2
-#     timeout = 5
-#     protocol = "HTTP"
-#     port = 8080
-#     path = "/health"
-#     matcher = "200-299"
-#     interval = 10
-#   }
-# }
-# resource "aws_lb_target_group_attachment" "backend" {
-#   target_group_arn = aws_lb_target_group.vvr-backend.arn
-#   target_id        = module.vvr-backend.id
-#   port             = 80
-# }
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 5
+    protocol = "HTTP"
+    port = 8080
+    path = "/health"
+    matcher = "200-299"
+    interval = 10
+  }
+}
+resource "aws_lb_target_group_attachment" "backend" {
+  target_group_arn = aws_lb_target_group.vvr-backend.arn
+  target_id        = module.vvr-backend.id
+  port             = 80
+}
 
 # resource "aws_iam_role" "lambda_exec" {
 #   name = "lambda_exec_role"
