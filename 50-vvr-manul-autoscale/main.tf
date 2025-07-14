@@ -36,6 +36,11 @@ resource "aws_lb_target_group" "vvr-backend" {
     interval = 10
   }
 }
+resource "aws_lb_target_group_attachment" "backend" {
+  target_group_arn = aws_lb_target_group.vvr-backend.arn
+  target_id        = module.vvr-backend.id
+  port             = 80
+}
 
 resource "aws_iam_role" "lambda_exec" {
   name = "lambda_exec_role"
